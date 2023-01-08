@@ -47,7 +47,6 @@ export async function getServerSideProps({ req, res, query }) {
     },
   });
 
-  console.log(tag);
   if (!tag || tag.posts.length == 0) {
     return {
       redirect: {

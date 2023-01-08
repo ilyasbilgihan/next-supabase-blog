@@ -1,15 +1,15 @@
-import CustomHead from '@/components/CustomHead';
+
 import ListPostCards from '@/components/ListPostCards';
 import PageHeading from '@/components/PageHeading';
 import { serialize, prisma } from '@/lib/prisma';
 
 const LIMIT = 3;
 
-export default function Home({ posts, scrollRef }) {
+export default function Home({ posts }) {
   return (
     <>
       <PageHeading title="Discover" icon="isax-discover-1" color="bg-purple-50 text-purple-700" />
-      <ListPostCards target={scrollRef} initialPosts={posts} limit={LIMIT} apiUrl="/api/posts" />
+      <ListPostCards initialPosts={posts} limit={LIMIT} apiUrl="/api/posts" />
     </>
   );
 }

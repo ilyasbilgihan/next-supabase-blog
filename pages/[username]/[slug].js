@@ -9,7 +9,7 @@ import { postValidation } from '@/validations/post.validation';
 
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ImageUploader from '@/components/Form/ImageUploader';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -160,6 +160,14 @@ export default function Post({ post: postFromProp }) {
     });
     return diffCount > 0;
   };
+
+  useEffect(() => {
+    let container = document.querySelectorAll('#container')[0];
+    container.style.height = '100vh';
+    return () => {
+      container.style.height = 'auto';
+    };
+  }, []);
 
   return (
     <>

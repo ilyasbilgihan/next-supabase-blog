@@ -23,7 +23,6 @@ export default function ListPostCards({ initialPosts = [], limit, apiUrl, hideAu
   const [posts, setPosts] = useState(initialPosts);
   const [nextId, setNextId] = useState();
   const [loading, setLoading] = useState(false);
-  const [scrollTarget, setScrollTarget] = useState(null);
 
   const handleInitialFetch = async () => {
     const res = await fetch(`${apiUrl}?limit=${limit}`);
@@ -49,15 +48,12 @@ export default function ListPostCards({ initialPosts = [], limit, apiUrl, hideAu
       setNextId(initialPosts.at(-1)?.id);
     }
 
-    let target = document.querySelectorAll('#scroll-target');
-    setScrollTarget(target[0]);
   }, []);
 
-  if (posts?.length && scrollTarget) {
+  if (posts?.length) {
     return (
       <div>
         <InfiniteScroll
-          scrollableTarget={scrollTarget}
           scrollThreshold="0px"
           dataLength={posts.length}
           next={fetchMorePost}

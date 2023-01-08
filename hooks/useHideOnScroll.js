@@ -7,24 +7,22 @@ export default function useHideOnScroll() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlNavbar = (event) => {
-    const target = event.target;
-    if (typeof target !== 'undefined') {
-      if (target.scrollTop > lastScrollY) {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > lastScrollY) {
         setShow(false);
       } else {
         setShow(true);
       }
-      setLastScrollY(target.scrollTop);
+      setLastScrollY(window.scrollY);
     }
   };
 
   useEffect(() => {
-    const target = document.getElementById('scroll-target');
-    if (typeof target !== 'undefined') {
-      target.addEventListener('scroll', controlNavbar);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
       // cleanup
       return () => {
-        target.removeEventListener('scroll', controlNavbar);
+        window.removeEventListener('scroll', controlNavbar);
       };
     }
   }, [lastScrollY, router.asPath]);

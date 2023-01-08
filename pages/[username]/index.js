@@ -2,7 +2,7 @@ import ListPostCards from '@/components/ListPostCards';
 import { serialize, prisma } from '@/lib/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { ClipLoader } from 'react-spinners';
 import { useUser } from 'store/UserContext';
@@ -102,6 +102,14 @@ export default function Profile({ profile }) {
     }
   };
 
+  useEffect(() => {
+    let container = document.querySelectorAll('#container')[0];
+    container.style.height = '100vh';
+    return () => {
+      container.style.height = 'auto';
+    };
+  }, []);
+
   return (
     <>
       <CustomHead
@@ -164,7 +172,7 @@ export default function Profile({ profile }) {
         </Formik>
 
         <div className="wrapper sm:-mt-[160px] relative z-20">
-          <div className="sm:shadow-[0px_-15px_15px_-15px_rgba(0,0,0,0.5)] -mx-8 grid grid-cols-1 place-items-center sm:grid-cols-4 mb-8 gap-8 p-8 bg-white rounded-tl-2xl rounded-tr-2xl">
+          <div className="sm:shadow-[0px_-15px_15px_-20px_rgba(0,0,0,0.5)] -mx-8 grid grid-cols-1 place-items-center sm:grid-cols-4 mb-8 gap-8 p-8 bg-white rounded-tl-2xl rounded-tr-2xl">
             {user && user.id == profile.id ? (
               <div className="flex sm:hidden justify-between w-full px-4">
                 <div

@@ -94,7 +94,7 @@ export default function Login() {
   return (
     <>
       <CustomHead title={`Login`} description="Login Page of Write You Want" />
-      <div className="w-4/5 md:w-2/5 mx-auto h-full flex flex-col justify-center">
+      <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex-grow w-2/3 sm:w-1/2 lg:w-1/4 mx-auto flex flex-col justify-center">
         <h1 className="text-center mb-8">{register ? 'Register' : 'Login'}</h1>
         <Formik
           initialValues={{

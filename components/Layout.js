@@ -39,14 +39,10 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <div className={`${font.className} flex flex-col h-screen`}>
+      <div id="container" className={`${font.className} flex flex-col`}>
         <Toaster position="top-left" reverseOrder={false} />
         <Navbar />
-        <main
-          id="scroll-target"
-          style={{ overflowY: 'overlay' }}
-          className="wrapper overflow-x-hidden flex-1 pt-14 sm:pt-16 pb-16"
-        >
+        <main className="wrapper overflow-x-hidden flex-1 pt-14 sm:pt-16 pb-16">
           {registration ? <CompleteRegistration /> : children}
         </main>
         <NavbarMobile />

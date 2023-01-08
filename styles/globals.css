@@ -10,6 +10,11 @@
     @apply px-4 sm:px-12 md:px-24 lg:px-[120px] xl:px-80;
   }
 
+  body {
+    overflow-y: overlay;
+    height: 100dvh;
+  }
+
   .postImageAnimation {
     transition: 500ms background-position;
     will-change: background-position;
