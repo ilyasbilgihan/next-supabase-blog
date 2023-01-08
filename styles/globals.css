@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('assets/iconsax/font.css');
+@import url('./quill-custom.css');
+
+@layer components {
+  .wrapper {
+    @apply px-4 sm:px-12 md:px-24 lg:px-[120px] xl:px-80;
+  }
+
+  .postImageAnimation {
+    transition: 500ms background-position;
+    will-change: background-position;
+    background-size: cover;
+    background-position: center;
+  }
+  .postImageAnimation:hover {
+    background-position: bottom right !important;
+  }
+
+  h6 {
+    @apply !text-base;
+  }
+  h5 {
+    @apply !text-lg;
+  }
+  h4 {
+    @apply !text-xl;
+  }
+  h3 {
+    @apply !text-2xl;
+  }
+  h2 {
+    @apply !text-3xl;
+  }
+  h1 {
+    @apply !text-4xl;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+
+  input:-webkit-autofill:focus + span {
+    @apply px-2.5 !ml-2.5 !-top-2.5 scale-75;
+  }
+
+  .comment:hover > .content > .line-container .line {
+    @apply bg-blue-400;
+  }
+
+  ins {
+    text-decoration: none;
+    color: #fff;
+    background-color: #10b981;
+  }
+  del {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ef4444;
+  }
+
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #a8bbbf;
+    border-radius: 20px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a0b4b9;
+  }
+}

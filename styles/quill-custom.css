@@ -1,0 +1,47 @@
+.ql-formats {
+  user-select: none;
+}
+.ql-container {
+  font-family: inherit !important;
+}
+.ql-editor[contenteditable='false'] {
+  padding: 0;
+}
+/*placeholder */
+.ql-editor.ql-blank::before {
+  @apply !text-gray-400 !not-italic  font-normal;
+}
+/**/
+.ql-bubble .ql-picker-label::before {
+  line-height: 24px !important;
+}
+
+/* refactor base font size */
+.ql-editor {
+  overflow-y: hidden !important;
+  @apply !text-base;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item[data-value='2']::before {
+  @apply !text-3xl;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item[data-value='3']::before {
+  @apply !text-2xl;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item[data-value='4']::before {
+  @apply !text-xl;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item[data-value='5']::before {
+  @apply !text-lg;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item[data-value='6']::before {
+  @apply !text-base;
+}
+.ql-bubble .ql-picker.ql-header .ql-picker-item::before {
+  display: flex;
+}
+
+/* One dark pro code block */
+pre.ql-syntax {
+  color: #abb2bf !important;
+  background: #282c34 !important;
+}

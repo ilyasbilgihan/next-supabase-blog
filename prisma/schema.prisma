@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Post {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String
+  description  String
+  content      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  image        String?
+
+  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId      String
+
+  comments     Comment[]
+  bookmarkedBy Bookmark[]
+  tags         Tag[]
+  likes        PostLike[]
+  
+  @@unique([slug, ownerId])
+}
+model Tag {
+  id         String    @id @default(cuid())
+  posts      Post[]
+  name       String
+  slug       String    @unique
+}
+
+model PostLike {
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     String
+  liker      User     @relation(fields: [likerId], references: [id], onDelete: Cascade)
+  likerId    String
+  assignedAt DateTime @default(now())
+
+  @@id([likerId, postId])
+}
+
+model Comment {
+  id         String    @id @default(cuid())
+  content    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  post       Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     String?
+
+  parentId   String?
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies    Comment[] @relation("CommentReplies")    
+
+  owner      User      @relation(fields: [ownerId], references: [id])
+  ownerId    String
+
+  history    CommentHistory[]
+  reactions  CommentReaction[]
+}
+
+model CommentHistory {
+  id         String    @id @default(cuid())
+  createdAt  DateTime  @default(now())
+  commentId  String
+  comment    Comment   @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  content    String
+
+  @@unique([commentId, createdAt])
+}
+
+model CommentReaction {
+  comment    Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId  String
+  reacter    User     @relation(fields: [reacterId], references: [id], onDelete: Cascade)
+  reacterId  String
+  value      Int
+
+  @@id([reacterId, commentId])
+}
+
+model User {
+  id         String     @id
+  email      String     @unique
+  username   String     @unique
+  bio        String?
+  image      String?
+  coverImage String?
+  location   String?
+  profession String?
+  createdAt  DateTime   @default(now())
+  name       String?
+  followers  Follows[]  @relation("following")
+  followings Follows[]  @relation("follower")
+  posts      Post[]
+  comments   Comment[]
+  bookmarks  Bookmark[]
+  likedPosts PostLike[]
+  reactions  CommentReaction[]
+}
+
+model Follows {
+  follower    User     @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId  String
+  following   User     @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String
+  assignedAt  DateTime @default(now())
+
+  @@id([followerId, followingId])
+}
+
+model Bookmark {
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     String
+  owner      User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId    String
+  assignedAt DateTime @default(now())
+
+  @@id([ownerId, postId])
+}
