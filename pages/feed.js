@@ -5,6 +5,8 @@ import PageHeading from '@/components/PageHeading';
 import Link from 'next/link';
 import CustomHead from '@/components/CustomHead';
 
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+
 const LIMIT = 3;
 
 export default function Feed() {
@@ -43,7 +45,7 @@ export async function getServerSideProps(context) {
   if (!data.session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/login',
         permanent: false,
       },
     };
