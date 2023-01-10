@@ -5,7 +5,7 @@ import useHideOnScroll from 'hooks/useHideOnScroll';
 
 import { useSessionContext } from '@supabase/auth-helpers-react';
 
-const topNavigation = [{ name: 'Feed', href: '/feed', isProtected: true }];
+const topNavigation = [{ name: 'Feed', href: '/your-feed', isProtected: true }];
 
 const dropdownItems = [
   {

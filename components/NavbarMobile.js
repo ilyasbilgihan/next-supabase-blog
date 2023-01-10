@@ -11,7 +11,7 @@ const navbarMobileItems = [
     iconActive: 'isax-bulk-home',
     color: 'text-rose-700',
     shadowColor: 'shadow-rose-200',
-    href: '/feed',
+    href: '/your-feed',
   },
   {
     icon: 'isax-discover',
