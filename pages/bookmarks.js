@@ -2,7 +2,7 @@ import ListPostCards from '@/components/ListPostCards';
 import Loader from '@/components/Loader';
 import { useUser } from 'store/UserContext';
 import PageHeading from '@/components/PageHeading';
-import Link from 'next/link';
+
 import CustomHead from '@/components/CustomHead';
 
 const LIMIT = 3;
@@ -12,20 +12,14 @@ export default function Bookmarks() {
 
   return (
     <>
-      <CustomHead title={`Your Feed`} />
-      <PageHeading title="Your Feed" icon="isax-people" color="bg-rose-50 text-rose-700" />
+      <CustomHead title={`Bookmarks`} />
+      <PageHeading title="Bookmarks" icon="isax-save-2" color="bg-yellow-50 text-yellow-700" />
 
       {user ? (
-        user.followings?.length ? (
-          <ListPostCards limit={LIMIT} apiUrl={`/api/feed/${user.id}`} />
+        user.bookmarks?.length ? (
+          <ListPostCards limit={LIMIT} apiUrl={`/api/bookmarks/${user.id}`} />
         ) : (
-          <div>
-            You are not following anyone yet. Go to{' '}
-            <Link className="text-primary" href="/">
-              Discover
-            </Link>{' '}
-            to find people to follow.
-          </div>
+          'You have no bookmarks yet.'
         )
       ) : (
         <Loader />
