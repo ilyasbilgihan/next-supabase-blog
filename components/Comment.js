@@ -208,12 +208,12 @@ export default function Comment({ comment, postId, updateCommentCount, deleteFro
     <>
       <div className="comment">
         <div className="flex items-center gap-2">
-          {currentComment.owner.image ? (
+          {currentComment.owner.id != 'anonymous' ? (
             <Link href={`/${currentComment.owner.username}`}>
               <Image
                 alt={`Profile image of ${currentComment.owner.username}`}
                 className="rounded-md shadow overflow-hidden"
-                src={currentComment.owner.image}
+                src={currentComment.owner.image || '/profile.jpg'}
                 width={32}
                 height={32}
               />
@@ -466,7 +466,7 @@ export default function Comment({ comment, postId, updateCommentCount, deleteFro
                     className="flex w-24 lg:w-28 xl:w-[136px] shadow-md rounded-lg overflow-hidden"
                   >
                     <Image
-                      src={currentComment.owner.image || 'profile.jpg'}
+                      src={currentComment.owner.image || '/profile.jpg'}
                       width={136}
                       height={136}
                       alt={`Profile image of ${currentComment.owner.username}`}

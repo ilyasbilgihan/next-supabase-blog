@@ -14,6 +14,7 @@ export default function Feed() {
     <>
       <CustomHead title={`Your Feed`} />
       <PageHeading title="Your Feed" icon="isax-people" color="bg-rose-50 text-rose-700" />
+
       {user ? (
         user.followings?.length ? (
           <ListPostCards limit={LIMIT} apiUrl={`/api/feed/${user.id}`} />

@@ -15,6 +15,8 @@ import { coverImageValidation } from '@/validations/user.validation';
 import { Field, Form, Formik } from 'formik';
 import ImageUploader from '@/components/Form/ImageUploader';
 
+import { useSessionContext } from '@supabase/auth-helpers-react';
+
 const LIMIT = 3;
 
 export default function Profile({ profile }) {
@@ -110,6 +112,17 @@ export default function Profile({ profile }) {
     };
   }, []);
 
+  const sessionContext = useSessionContext();
+  const handleLogout = async () => {
+    const { error } = await sessionContext.supabaseClient.auth.signOut();
+    if (error) {
+      console.log(error);
+    } else {
+      signOut(); // set user data to null
+      router.reload();
+    }
+  };
+
   return (
     <>
       <CustomHead
@@ -176,10 +189,7 @@ export default function Profile({ profile }) {
             {user && user.id == profile.id ? (
               <div className="flex sm:hidden justify-between w-full px-4">
                 <div
-                  onClick={() => {
-                    signOut();
-                    router.reload();
-                  }}
+                  onClick={handleLogout}
                   className="flex sm:hidden group items-center gap-2 mb-8 text-red-500 cursor-pointer"
                 >
                   <span className="isax-logout text-lg"></span>

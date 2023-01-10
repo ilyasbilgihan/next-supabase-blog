@@ -1,4 +1,3 @@
-
 import ListPostCards from '@/components/ListPostCards';
 import PageHeading from '@/components/PageHeading';
 import { serialize, prisma } from '@/lib/prisma';

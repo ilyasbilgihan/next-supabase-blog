@@ -93,23 +93,7 @@ export default function NavbarMobile() {
             </Link>
           </li>
         ) : (
-          <li>
-            <Link
-              href="/login"
-              className={`grid place-items-center h-14 w-14 ${
-                router.pathname == '/login' ? 'text-emerald-700 drop-shadow-md ' : ''
-              }`}
-            >
-              {router.pathname == '/login' ? (
-                <span className="isax-bulk-login text-2xl">
-                  <span className="path1"></span>
-                  <span className="path2"></span>
-                </span>
-              ) : (
-                <span className="isax-login text-2xl"></span>
-              )}
-            </Link>
-          </li>
+          ''
         )}
       </ul>
     </nav>

@@ -44,7 +44,7 @@ export default function Navbar() {
 
   const show = useHideOnScroll();
 
-  const handleLogut = async () => {
+  const handleLogout = async () => {
     const { error } = await sessionContext.supabaseClient.auth.signOut();
     if (error) {
       console.log(error);
@@ -73,6 +73,7 @@ export default function Navbar() {
           width="100"
           height="32"
           alt="WuW logo"
+          priority={true}
           className="drop-shadow-sm shadow-gray-400"
         />
       </Link>
@@ -110,7 +111,7 @@ export default function Navbar() {
                       router.push('/settings');
                       break;
                     case 'Logout':
-                      handleLogut();
+                      handleLogout();
                       break;
                     default:
                       break;
