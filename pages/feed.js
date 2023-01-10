@@ -7,7 +7,7 @@ import CustomHead from '@/components/CustomHead';
 
 const LIMIT = 3;
 
-export default function Bookmarks() {
+export default function Feed() {
   const { user } = useUser();
 
   return (
