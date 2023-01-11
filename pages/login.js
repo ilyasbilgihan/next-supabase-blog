@@ -1,4 +1,4 @@
-import { useSessionContext } from '@supabase/auth-helpers-react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -13,22 +13,20 @@ import { toast } from 'react-hot-toast';
 import CustomHead from '@/components/CustomHead';
 
 export default function Login() {
-  const [disableSubmit, setDisableSubmit] = useState(false);
-  const [register, setRegister] = useState(false);
-  const sessionContext = useSessionContext();
-  const [settingUser, setSettingUser] = useState(false);
   const router = useRouter();
+  const [disableSubmit, setDisableSubmit] = useState(false);
+  const [userLogin, setUserLogin] = useState(false);
+  const supabase = useSupabaseClient();
+  const [authMode, setAuthMode] = useState(0);
   const { signIn } = useUser();
 
   useEffect(() => {
     const {
       data: { subscription },
-    } = sessionContext.supabaseClient.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
-        setSettingUser(true);
         signIn(session.user.id).then(() => {
           router.back();
-          setSettingUser(false);
         });
       }
     });
@@ -41,17 +39,17 @@ export default function Login() {
   const handleSubmit = async (values) => {
     setDisableSubmit(true);
 
-    if (register) {
-      handleRegister(values);
-    } else {
-      handleLogin(values);
+    if (authMode == 0) {
+      await handleLogin(values);
+    } else if (authMode == 1) {
+      await handleRegister(values);
     }
 
     setDisableSubmit(false);
   };
 
   const handleLogin = async (values) => {
-    const data = sessionContext.supabaseClient.auth.signInWithPassword({
+    const data = supabase.auth.signInWithPassword({
       email: values.email,
       password: values.password,
     });
@@ -60,6 +58,7 @@ export default function Login() {
       loading: 'Checking Credentials...',
       success: (res) => {
         if (res?.error == null) {
+          setUserLogin(true);
           return 'Successfully logged-in';
         } else {
           throw new Error(res.error.message);
@@ -70,7 +69,7 @@ export default function Login() {
   };
 
   const handleRegister = async (values) => {
-    const data = sessionContext.supabaseClient.auth.signUp({
+    const data = supabase.auth.signUp({
       email: values.email,
       password: values.password,
     });
@@ -95,7 +94,7 @@ export default function Login() {
     <>
       <CustomHead title={`Login`} description="Login Page of Write You Want" />
       <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex-grow w-2/3 sm:w-1/2 lg:w-1/4 mx-auto flex flex-col justify-center">
-        <h1 className="text-center mb-8">{register ? 'Register' : 'Login'}</h1>
+        <h1 className="text-center mb-8">{['Login', 'Register'][authMode]}</h1>
         <Formik
           initialValues={{
             email: '',
@@ -105,11 +104,12 @@ export default function Login() {
           validationSchema={Yup.object().shape({
             email: Yup.string().email('Not a valid email').required('Email Required'),
             password: Yup.string().min(6).max(25).required('Password Required'),
-            passwordConfirm: register
-              ? Yup.string()
-                  .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                  .required()
-              : '',
+            passwordConfirm:
+              authMode == 1
+                ? Yup.string()
+                    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+                    .required()
+                : '',
           })}
           onSubmit={handleSubmit}
         >
@@ -121,7 +121,7 @@ export default function Login() {
               <Field name="password">
                 {(prop) => <Input type="password" label="Password" fieldProps={prop} />}
               </Field>
-              {register ? (
+              {authMode == 1 ? (
                 <Field name="passwordConfirm">
                   {(prop) => <Input type="password" label="Confirm Password" fieldProps={prop} />}
                 </Field>
@@ -133,21 +133,25 @@ export default function Login() {
                 type="submit"
                 className="!w-full disabled:!bg-opacity-50 disabled:cursor-not-allowed"
               >
-                {register ? 'Register' : 'Login'}
+                {['Login', 'Register'][authMode]}
               </Button>
               <span
                 onClick={() => {
-                  setRegister((r) => !r);
+                  if (authMode != 0) {
+                    setAuthMode(0);
+                  } else {
+                    setAuthMode(1);
+                  }
                 }}
                 className="select-none text-sm mt-2 hover:underline cursor-pointer"
               >
-                {register ? 'Already have an account?' : "Don't you have an account yet?"}
+                {["Don't you have an account yet?", 'Already have an account?'][authMode]}
               </span>
             </Form>
           )}
         </Formik>
-        {settingUser ? <Loader /> : ''}
       </div>
+      {userLogin ? <Loader /> : ''}
     </>
   );
 }

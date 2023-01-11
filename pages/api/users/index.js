@@ -28,6 +28,12 @@ export default async function handler(req, res) {
           username,
           email: session.user.email,
         },
+        include: {
+          likedPosts: true,
+          bookmarks: true,
+          followings: true,
+          followers: true,
+        },
       });
 
       return res.status(201).json({ data: user });

@@ -431,7 +431,7 @@ export default function Profile({ profile }) {
                           initialPosts={profile.posts}
                         />
                       ) : (
-                        'No posts yet.'
+                        'No shared posts yet.'
                       )}
                     </>
                   ),
