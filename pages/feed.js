@@ -4,6 +4,7 @@ import { useUser } from 'store/UserContext';
 import PageHeading from '@/components/PageHeading';
 import Link from 'next/link';
 import CustomHead from '@/components/CustomHead';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const LIMIT = 3;
 
@@ -33,3 +34,23 @@ export default function Feed() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  const supabase = createServerSupabaseClient(context);
+
+  // if session redirect
+  const { data } = await supabase.auth.getSession();
+  if (!data.session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
+
