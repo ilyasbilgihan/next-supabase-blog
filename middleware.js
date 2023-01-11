@@ -26,5 +26,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/bookmarks', '/write', '/settings', '/feed'],
+  matcher: ['/bookmarks', '/write', '/settings'],
 };
