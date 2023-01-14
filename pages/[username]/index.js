@@ -383,7 +383,7 @@ export default function Profile({ profile }) {
                                           height={36}
                                         />
                                       </Link>
-                                      <div>
+                                      <div className="flex-grow">
                                         <Link
                                           href={`/${following.username}`}
                                           className="inline-flex font-semibold transition-transform duration-300 hover:translate-x-0.5"
