@@ -1,7 +1,10 @@
+/**
 @import url('./fonts/bold/bold.css');
 @import url('./fonts/broken/broken.css');
-@import url('./fonts/bulk/bulk.css');
 @import url('./fonts/twotone/twotone.css');
+**/
+
+@import url('./fonts/bulk/bulk.css');
 @import url('./fonts/outline/outline.css');
 
 [class^="isax-"], [class*=" isax-"]{

@@ -46,10 +46,7 @@ export default function PostCard({ post, hideAuthor }) {
         <div className="flex gap-2 self-start flex-1 flex-col">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-1 text-sm">
-              <span className="isax-2tone-clock">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </span>
+              <span className="isax-clock"></span>
               <span>
                 {new Date(post.createdAt).toLocaleDateString('en-UK', {
                   year: 'numeric',
