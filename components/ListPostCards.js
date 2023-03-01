@@ -47,7 +47,6 @@ export default function ListPostCards({ initialPosts = [], limit, apiUrl, hideAu
     } else {
       setNextId(initialPosts.at(-1)?.id);
     }
-
   }, []);
 
   if (posts?.length) {
