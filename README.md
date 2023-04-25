@@ -9,7 +9,7 @@
 
 ## About this application
 
-This is a fully functional social blog application. The main idea is its functionality, so I didn't keep myself busy that much with design stuff.
+This is a fully functional social blog application. The main idea is its functionality, but I tried my best to make it clean and responsive.
 
 <a href="https://next-supabase-blog.vercel.app" target="_blank" title="Next Supabase Blog">Live Demo</a>
 
