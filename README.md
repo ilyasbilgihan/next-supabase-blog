@@ -1,5 +1,18 @@
 <h1 align="center">Next Supabase Blog</h1>
 
+<p align="center">
+	<picture>
+		<source srcset="./public/dark-thumb.png" media="(prefers-color-scheme: dark)">
+		<img src="./public/light-thumb.png">
+	</picture>
+</p>
+
+## About this application
+
+This is a fully functional social blog application. The main idea is its functionality, so I didn't keep myself busy that much with design stuff.
+
+<a href="https://next-supabase-blog.vercel.app" target="_blank" title="Next Supabase Blog">Live Demo</a>
+
 ## Build Setup
 
 ```bash
@@ -18,19 +31,6 @@ $ npm run start
 $ npx prisma migrate dev --name <MIGRATION_NAME>
 
 ```
-
-<p align="center">
-	<picture>
-		<source srcset="./public/dark-thumb.png" media="(prefers-color-scheme: dark)">
-		<img src="./public/light-thumb.png">
-	</picture>
-</p>
-
-## About this application
-
-This is a fully functional social blog application. The main idea is its functionality, so I didn't keep myself busy that much with design stuff.
-
-<a href="https://next-supabase-blog.vercel.app" target="_blank" title="Next Supabase Blog">Live Demo</a>
 
 ### List of the features
 
