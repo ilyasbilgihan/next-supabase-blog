@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Next Supabase Blog</h1>
 
-## Getting Started
-
-First, run the development server:
+## Build Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
+# install dependencies
+$ npm install
+
+# serve with hot reload
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm run start
+
+# Make sure you have configured the ".env" file like ".env.example" then migrate with prisma.
+# If you have problems with migrations, try to delete prisma/migrations folder and run the command again.
+$ npx prisma migrate dev --name <MIGRATION_NAME>
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p align="center">
+	<picture>
+		<source srcset="./public/dark-thumb.png" media="(prefers-color-scheme: dark)">
+		<img src="./public/light-thumb.png">
+	</picture>
+</p>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## About this application
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This is a fully functional social blog application. The main idea is its functionality, so I didn't keep myself busy that much with design stuff.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<a href="https://next-supabase-blog.vercel.app" target="_blank" title="Next Supabase Blog">Live Demo</a>
 
-## Learn More
+### List of the features
 
-To learn more about Next.js, take a look at the following resources:
+- Create accounts, change account informations (location, profession, bio, display name, username, profile picture, cover image).
+- Every user has a public profile page which includes a list of the posts that the user has published, a list of the posts that the user hase liked, a cover image of the user and user informations.
+- Write posts, delete posts, edit posts (description, content, post image, tags).
+- Like posts, add/remove posts to your bookmarks.
+- Follow/Unfollow people, list the posts of the ones you have followed (feed).
+- List the posts by tags (Max of 5 tag is supported for each post).
+- Write comments, up/down vote comments, delete comments, edit comments(content), inspect comments' edit history.
+- Mobile friendly as much as I could handle.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Reach me
 
-## Deploy on Vercel
+**[twitter/@ilyasbilgihan](https://twitter.com/ilyasbilgihan)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**[instagram/@ilyasbilgihan](https://instagram.com/ilyasbilgihan)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**ilyasbilgihan@gmail.com**

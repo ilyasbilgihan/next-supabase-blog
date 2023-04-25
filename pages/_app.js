@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -22,14 +22,14 @@ function MyApp({ Component, pageProps }) {
         <title>Write You Want</title>
         <meta
           name="description"
-          content="Medium.com benzeri blog sitesi - Erciyes Üniversitesi Design Project Ödevi"
+          content="Next.js + Supabase + Prisma | Responsive blog application example"
           key="description"
         />
-        <meta name="twitter:site" content="@EruMedya" />
+        <meta name="twitter:site" content="@ilyasbilgihan" />
         <meta name="og:site_name" content="Write You Want" />
         <meta name="twitter:url" content={router.asPath} />
-        <meta name="og:url" ontent={router.asPath} />
-        <meta name="twitter:creator" content="@EruMedya" />
+        <meta name="og:url" content={router.asPath} />
+        <meta name="twitter:creator" content="@ilyasbilgihan" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="robots" content="index, follow" />
         <meta name="og:type" content="website" key="type" />
