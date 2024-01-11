@@ -45,6 +45,11 @@ $ npx prisma migrate dev --name <MIGRATION_NAME>
 
 <br>
 
+## Related
+- [Nuxt Firebase Blog](https://github.com/ilyasbilgihan/nuxt-firebase-blog) (old)
+  
+<br>
+
 ## Reach me
 
 **[twitter/@ilyasbilgihan](https://twitter.com/ilyasbilgihan)**
