@@ -32,7 +32,7 @@ $ npx prisma migrate dev --name <MIGRATION_NAME>
 
 ```
 
-### List of the features
+### List of some features
 
 - Create accounts, change account informations (location, profession, bio, display name, username, profile picture, cover image).
 - Every user has a public profile page which includes a list of the posts that the user has published, a list of the posts that the user hase liked, a cover image of the user and user informations.
